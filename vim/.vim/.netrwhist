@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/krishan.sharma/Library/Application Support/Sublime Text 2/Packages'
+let g:netrw_dirhist_2='/Users/krishan.sharma/workday/machinedb-web/.git/hooks'
+let g:netrw_dirhist_3='/Users/krishan.sharma/workday/mdb_virtual_box/MDB-Gerrit'
+let g:netrw_dirhist_4='/Users/krishan.sharma/workday/repos/machinedb'

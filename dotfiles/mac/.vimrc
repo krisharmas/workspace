@@ -12,6 +12,9 @@ set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set laststatus=2
+set statusline+=%F
+set pastetoggle=<F2>
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2

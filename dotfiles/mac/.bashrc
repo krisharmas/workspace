@@ -4,6 +4,17 @@ set notify # #notify immediately when background jobs are completed
 # set prompt
 PS1='\[$(tput setaf 2)\]\[$(tput bold)\]\t\[$(tput sgr0)\]\[$(tput sgr0)\] [\u@\h \W]$ '
 
+function title {
+    if [ "$1" ]
+    then
+        unset PROMPT_COMMAND
+        echo -ne "\033]0;${*}\007"
+    else
+        export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+    fi
+}
+title
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -14,3 +25,5 @@ if [ -f $HOME/.aliases ]; then
 fi
 
 export HISTTIMEFORMAT="%F %T "
+export PATH=$PATH:/Users/krishan.sharma/.local/bin
+

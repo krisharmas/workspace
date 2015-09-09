@@ -21,7 +21,8 @@ symlink:
 			mv $$link $$link.bk ; \
 		fi ; \
 		ln -s $(PWD)/$$file $$link ; \
-	done
+	done ; \
+	source $(HOME)/.bashrc
 
 clean:
 	for file in $(FILES) ; do \

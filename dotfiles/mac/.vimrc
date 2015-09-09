@@ -18,6 +18,7 @@ set pastetoggle=<F2>
 
 autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
+autocmd FileType make setlocal noexpandtab
 
 if $_ == "/usr/local/bin/git"
     set colorcolumn=72

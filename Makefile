@@ -22,7 +22,6 @@ symlink:
 		fi ; \
 		ln -s $(PWD)/$$file $$link ; \
 	done ; \
-	source $(HOME)/.bashrc
 
 clean:
 	for file in $(FILES) ; do \

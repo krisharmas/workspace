@@ -1,0 +1,62 @@
+#!/usr/bin/env python
+''' Script to install git hooks in repositories '''
+
+import sys
+import os
+import argparse
+import commands
+
+CURRENT_DIR = os.getcwd()
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+WORKSPACE_DIR = commands.getoutput('git rev-parse --show-toplevel')
+os.chdir(CURRENT_DIR)
+sys.path.append(os.path.join(WORKSPACE_DIR, '..'))
+from workspace import githooks
+
+
+def get_args(argv):
+    ''' Get arguments passed when script was called '''
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-a', '--all', help='install git hooks in all git repos in path', action="store_true")
+    parser.add_argument('-p', '--path', type=str, help='install git hooks in this path')
+    options = parser.parse_args(argv)
+    return options
+
+
+def install_hooks(options):
+    ''' Install hooks in repo(s) '''
+    if options.path:
+        if os.path.isdir(options.path):
+            path = options.path
+        else:
+            print 'Invalid path: {path} not a directory.'.format(path=options.path)
+            sys.exit(1)
+    else:
+        path = os.getcwd()
+
+    if not options.all:
+        os.chdir(path)
+        status, output = commands.getstatusoutput('git rev-parse --show-toplevel')
+        if status != 0:
+            print 'Invalid path: {path} not a git repository.'.format(path=options.path)
+            sys.exit(status)
+        repos = [output]
+    else:
+        repos = commands.getoutput('ls -d {path}/*'.format(path=path)).splitlines()
+
+    for repo in repos:
+        print 'adding hooks for {repo}'.format(repo=repo)
+        hook_dir = os.path.join(repo, '.git/hooks')
+        if os.path.isdir(hook_dir):
+            status, output = commands.getstatusoutput('cp {githook_path}/[a-z]* {hook_dir}'.format(githook_path=githooks.path,
+                                                                                                   hook_dir=hook_dir))
+            if status != 0:
+                print 'Error: hooks not added to repo'
+                print output
+            else:
+                print 'hooks successfully added to {repo}'.format(repo=repo)
+
+
+if __name__ == '__main__':
+    options = get_args(sys.argv[1:])
+    install_hooks(options)

@@ -9,6 +9,7 @@ endif
 
 DOTFILES = $(shell ls -a dotfiles/$(DIR)/.[a-z]*)
 VIM = $(shell ls -ad vim/.[a-z]*)
+BIN = $(shell ls bin/*)
 FILES = $(DOTFILES) $(VIM)
 
 all: symlink
@@ -17,6 +18,15 @@ symlink:
 	for file in $(FILES) ; do \
 		link="$(HOME)/`basename $$file`" ; \
 		if [ -e $$link ] ; \
+		then \
+			mv $$link $$link.bk ; \
+		fi ; \
+		ln -s $(PWD)/$$file $$link ; \
+	done ; \
+	mkdir -p $(HOME)/.local/bin ; \
+	for file in $(BIN) ; do \
+		link="$(HOME)/.local/bin/`basename $$file`" ; \
+		if [ -e $$link ]; \
 		then \
 			mv $$link $$link.bk ; \
 		fi ; \

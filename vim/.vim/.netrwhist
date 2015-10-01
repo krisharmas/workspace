@@ -1,8 +1,10 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =8
 let g:netrw_dirhist_1='/Users/krishan.sharma/Library/Application Support/Sublime Text 2/Packages'
 let g:netrw_dirhist_2='/Users/krishan.sharma/workday/machinedb-web/.git/hooks'
 let g:netrw_dirhist_3='/Users/krishan.sharma/workday/mdb_virtual_box/MDB-Gerrit'
 let g:netrw_dirhist_4='/Users/krishan.sharma/workday/repos/machinedb'
 let g:netrw_dirhist_5='/Users/krishan.sharma/github/workspace/vim/.vim/.vim'
 let g:netrw_dirhist_6='/Users/krishan.sharma/github/workspace/vim'
+let g:netrw_dirhist_7='/Users/krishan.sharma/.ssh'
+let g:netrw_dirhist_8='/Users/krishan.sharma/.chef'

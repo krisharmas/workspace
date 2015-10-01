@@ -3,10 +3,10 @@ set number
 set ruler
 set hlsearch
 set t_Co=256
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 syntax enable
-set background=dark
-colorscheme solarized
+"set background=dark
+"colorscheme solarized
 set mouse=a
 set smartindent
 set tabstop=4

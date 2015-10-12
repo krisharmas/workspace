@@ -21,3 +21,4 @@ fi
 #[ -e "$COLORS" ] || return
 
 export HISTTIMEFORMAT="%F %T "
+export PATH=$PATH:~/.local/bin

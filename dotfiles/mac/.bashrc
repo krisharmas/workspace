@@ -25,5 +25,5 @@ if [ -f $HOME/.aliases ]; then
 fi
 
 export HISTTIMEFORMAT="%F %T "
-export PATH=$PATH:/Users/krishan.sharma/.local/bin
+export PATH=$PATH:~/.local/bin
 

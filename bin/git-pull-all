@@ -1,21 +1,23 @@
 #!/bin/bash
 
 mydir=$1
+currdir=$(pwd)
 if [ X$mydir == X ]
 then
-    mydir=$(pwd)
+    mydir=$currdir
 fi
 
 for repo in $(ls $mydir)
 do
-    if [ -d $repo ]
+    repo_path=$mydir/$repo
+    if [ -d $repo_path ]
     then
-        cd $repo
+        cd $repo_path
         echo "<====== pulling $repo/master ======>"
         branch=$(git rev-parse --abbrev-ref HEAD)
         git checkout master
         git pull
         git checkout $branch
-        cd ..
+        cd $currdir
     fi
 done

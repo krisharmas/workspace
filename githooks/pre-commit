@@ -1,11 +1,13 @@
 #!/bin/sh
 #
 
+# If on Mac, assumed that sed has been aliased to use 'gsed -r'
+
 # Remove trailing whitespace from all files that are being committed.
-files=$(git status --porcelain | grep "^[A-Z][[:space:]]" | awk -F" " '{print $2}')
+files=$(git status --porcelain | grep "^[A-Z]\s" | awk -F" " '{print $2}')
 for f in $files
 do
-    sed -i '' 's/[[:space:]]*$//' $f
+    sed -i 's/\s*$//' $f
     git add $f
 done
 

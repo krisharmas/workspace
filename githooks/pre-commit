@@ -1,11 +1,17 @@
 #!/bin/bash
 #
 
-# If on Mac, assumed that sed has been aliased to use 'gsed -r'
+# If on Mac, assume that gnu-sed has been installed with brew
 machine=$(uname)
 if [ $machine == 'Darwin' ]
 then
-    sed_cmd='gsed -r'
+    if [ $(which gsed) ]
+    then
+        sed_cmd='gsed -r'
+    else
+        echo 'WARNING: Install gnu-sed to use pre-commit hook: `brew install gnu-sed`'
+        exit
+    fi
 else
     sed_cmd='sed'
 fi

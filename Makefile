@@ -7,12 +7,13 @@ else
 DIR = "linux"
 endif
 
-DOTFILES = $(shell ls -a dotfiles/$(DIR)/.[a-z]*)
-VIM = $(shell ls -ad vim/.[a-z]*)
+DOTFILES = $(shell find dotfiles/$(DIR) -maxdepth 1 | tail -n +2)
+GITHOOKS = $(shell ls githooks/[a-z]*)
+VIM = $(shell find  vim -maxdepth 1 | tail -n +2)
 BIN = $(shell ls bin/*)
 FILES = $(DOTFILES) $(VIM)
 
-all: symlink
+all: symlink githooks
 
 symlink:
 	for file in $(FILES) ; do \
@@ -31,7 +32,18 @@ symlink:
 			mv $$link $$link.bk ; \
 		fi ; \
 		ln -s $(PWD)/$$file $$link ; \
-	done ; \
+	done
+
+githooks:
+	mkdir -p $(HOME)/.git_templates/hooks ; \
+	for hook in $(GITHOOKS) ; do \
+		link="$(HOME)/.git_templates/hooks/`basename $$hook`" ; \
+		if [ -e $$link ] ; \
+		then \
+			rm $$link ; \
+		fi ; \
+		ln -s $(PWD)/$$hook $$link ; \
+	done
 
 clean:
 	for file in $(FILES) ; do \

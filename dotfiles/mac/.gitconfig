@@ -3,5 +3,8 @@
     email = krishan.sharma@workday.com
 [alias]
     review = "!f() { if [ -z $1 ]; then echo \"Usage: git review <branch> <topic>\"; else if [ -z $2 ]; then git push origin HEAD:refs/for/$1; else git push origin HEAD:refs/for/$1/$2 ; fi; fi; }; f"
-    sync = "!f() { echo \"Syncing $1 with master\" && git pull --rebase origin master; }; f"
+    sync = "!f() { echo \"Syncing $(git rev-parse --abbrev-ref HEAD) with master\" && git pull --rebase origin master; }; f"
     draft = "!f() { if [ -z $1 ]; then echo \"Usage: git draft <branch> <topic>\"; else if [ -z $2 ]; then git push origin HEAD:refs/drafts/$1; else git push origin HEAD:refs/drafts/$1/$2 ; fi; fi; }; f"
+    cloner = "!f() { if [ -z $1 ]; then echo \"Usage: git cloner <item>\"; else "git clone ssh://$USER@gerrit.workday.com:29418/$1 $2"; cd $1; git install-hooks; cd ..; fi; }; f"
+[core]
+	pager = less -FRSX

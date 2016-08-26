@@ -15,6 +15,10 @@ function title {
 }
 title
 
+function mkdircd () {
+    mkdir -p "$@" && eval cd "\"\$$#\"";
+}
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -27,3 +31,5 @@ fi
 export HISTTIMEFORMAT="%F %T "
 export PATH=$PATH:~/.local/bin
 
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

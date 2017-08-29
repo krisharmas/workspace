@@ -19,6 +19,10 @@ function mkdircd () {
     mkdir -p "$@" && eval cd "\"\$$#\"";
 }
 
+function sshuh () {
+    sed -i "$1d" ~/.ssh/known_hosts
+}
+
 export CLICOLOR=1
 export LSCOLORS=GxFxCxDxBxegedabagaced
 
@@ -32,4 +36,5 @@ export HISTTIMEFORMAT="%F %T "
 export PATH=$PATH:~/.local/bin
 
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

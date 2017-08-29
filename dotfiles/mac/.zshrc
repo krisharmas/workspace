@@ -62,7 +62,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/krishan.sharma/.rvm/bin:/Users/krishan.sharma/.local/bin"
+export PATH="/Users/krishan.sharma/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/krishan.sharma/.local/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -79,6 +79,8 @@ fi
 bindkey -s "^[OM" "^M"
 
 function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
+
+function sshuh () { sed -i "$1d" ~/.ssh/known_hosts }
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -104,3 +106,6 @@ function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

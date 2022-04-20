@@ -1,0 +1,1 @@
+wget --user-agent="Mozilla" -O - $1 | egrep -o "https:\\\\u002F\\\\u002Fssl.cdn-redfin.com\\\\u002Fphoto\\\\u002F\d*\\\\u002Fbigphoto\\\\u002F\d*\\\\u002F[A-Z0-9_]*.jpg" | ascii2uni -Z '\u%04X' | xargs wget --user-agent="Mozilla"

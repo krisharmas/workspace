@@ -1,5 +1,5 @@
-set noclobber # #don't overwrite exisiting files when redirecting output
-set notify # #notify immediately when background jobs are completed
+set noclobber # dont overwrite exisiting files when redirecting output
+set notify # notify immediately when background jobs are completed
 
 # set prompt
 PS1='\[$(tput setaf 2)\]\[$(tput bold)\]\t\[$(tput sgr0)\]\[$(tput sgr0)\] [\u@\h \W]$ '
@@ -38,3 +38,12 @@ export PATH=$PATH:~/.local/bin
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+# Add groovy to PATH
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export PATH="$PATH:$GROOVY_HOME"
+
+declare -x ARTIFACTORY_USER=$(grep '@artifactory.workday.com' ~/.gemrc | awk -F'/\|:' '{print $4;}')
+declare -x ARTIFACTORY_PASSWORD=$(grep '@artifactory.workday.com' ~/.gemrc | awk -F':\|@' '{print $3;}')
+
+source /Users/krishan.sharma/Library/Preferences/org.dystroy.broot/launcher/bash/br

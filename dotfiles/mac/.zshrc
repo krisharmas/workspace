@@ -16,7 +16,7 @@ ZSH_THEME="gallois"
 
 # Speed up completion
 zstyle ':completion:*' accept-exact '*(N)'
-zstyle ':completion:*' use-cache on
+zstyle ':completion:*' use-cache no
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 __git_files () {
@@ -63,7 +63,13 @@ plugins=(git)
 # User configuration
 
 export PATH="/Users/krishan.sharma/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/krishan.sharma/.local/bin"
+export GROOVY_HOME=/usr/local/opt/groovy/libexec
+export PATH="$PATH:$GROOVY_HOME"
+export SSH_TOOLS_QUIT_SECURID="true"
 # export MANPATH="/usr/local/man:$MANPATH"
+
+declare -x ARTIFACTORY_USER=$(grep '@artifactory.workday.com' ~/.gemrc | awk -F'/\|:' '{print $4;}')
+declare -x ARTIFACTORY_PASSWORD=$(grep '@artifactory.workday.com' ~/.gemrc | awk -F':\|@' '{print $3;}')
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,6 +87,11 @@ bindkey -s "^[OM" "^M"
 function mkdircd () { mkdir -p "$@" && eval cd "\"\$$#\""; }
 
 function sshuh () { sed -i "$1d" ~/.ssh/known_hosts }
+
+function reload_gvpn () {
+    launchctl unload /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*
+    launchctl load /Library/LaunchAgents/com.paloaltonetworks.gp.pangp*
+}
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -109,3 +120,12 @@ function sshuh () { sed -i "$1d" ~/.ssh/known_hosts }
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+source /Users/krishan.sharma/Library/Preferences/org.dystroy.broot/launcher/bash/br
+
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/shims:$PATH"
+eval "$(pyenv init -)"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+

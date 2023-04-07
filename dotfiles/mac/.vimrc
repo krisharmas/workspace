@@ -5,7 +5,7 @@ set hlsearch
 set t_Co=256
 let g:solarized_termcolors=256
 syntax enable
-set background=dark
+set background=light
 colorscheme solarized
 set mouse=a
 set smartindent
@@ -20,7 +20,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType ruby setlocal shiftwidth=2 tabstop=2
 autocmd FileType make setlocal noexpandtab
 
-if $_ == "/usr/local/bin/git"
+if $_ == "/usr/bin/git"
     set colorcolumn=72
 else
     set colorcolumn=120
